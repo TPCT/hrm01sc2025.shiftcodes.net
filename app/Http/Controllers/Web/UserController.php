@@ -6,6 +6,7 @@ use App\Exports\UserExport;
 use App\Helpers\AppHelper;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\UserAttachment;
 use App\Repositories\BranchRepository;
 use App\Repositories\CompanyRepository;
 use App\Repositories\EmployeeLeaveTypeRepository;
@@ -17,6 +18,7 @@ use App\Repositories\UserRepository;
 use App\Requests\Leave\LeaveTypeRequest;
 use App\Requests\User\ChangePasswordRequest;
 use App\Requests\User\UserAccountRequest;
+use App\Requests\User\UserAttachmentRequest;
 use App\Requests\User\UserCreateRequest;
 use App\Requests\User\UserLeaveTypeRequest;
 use App\Requests\User\UserUpdateRequest;
@@ -48,6 +50,43 @@ class UserController extends Controller
 
     )
     {
+        $this->attachmentTypes = [
+            (object)[
+                'name' => 'ID Image',
+                'value' => null,
+                'type' => 'ID'
+            ],
+            (object)[
+                'name' => 'Criminal Record Image',
+                'value' => null,
+                'type' => 'Criminal Record'
+            ],
+            (object)[
+                'name' => 'Academic Qualification Image',
+                'value' => null,
+                'type' => 'Academic Qualification'
+            ],
+            (object)[
+                'name' => 'Employment Contract Image',
+                'value' => null,
+                'type' => 'Employment Contract'
+            ],
+            (object)[
+                'name' => 'Trust Receipt Image',
+                'value' => null,
+                'type' => 'Trust Receipt'
+            ],
+            (object)[
+                'name' => 'Other Image 1',
+                'value' => null,
+                'type' => 'Other 1'
+            ],
+            (object)[
+                'name' => 'Other Image 2',
+                'value' => null,
+                'type' => 'Other 2'
+            ]
+        ];
     }
 
     public function index(Request $request)
@@ -86,15 +125,17 @@ class UserController extends Controller
             $employeeCode = AppHelper::getEmployeeCode();
 
             $leaveTypes = $this->leaveTypeRepository->getPaidLeaveTypes();
+            $attachmentTypes = $this->attachmentTypes;
             $bsEnabled = AppHelper::ifDateInBsEnabled();
 
-            return view($this->view . 'create', compact('companyDetail', 'roles', 'leaveTypes', 'employeeCode', 'bsEnabled'));
+
+            return view($this->view . 'create', compact('companyDetail', 'roles', 'leaveTypes', 'employeeCode', 'bsEnabled', 'attachmentTypes'));
         } catch (Exception $exception) {
             return redirect()->back()->with('danger', $exception->getMessage());
         }
     }
 
-    public function store(UserCreateRequest $request, UserAccountRequest $accountRequest, UserLeaveTypeRequest $leaveRequest)
+    public function store(UserCreateRequest $request, UserAccountRequest $accountRequest, UserLeaveTypeRequest $leaveRequest, UserAttachmentRequest $attachmentRequest)
     {
         $this->authorize('create_employee');
         try {
@@ -107,10 +148,11 @@ class UserController extends Controller
             $validatedData['is_active'] = 1;
             $validatedData['status'] = 'verified';
             $validatedData['company_id'] = AppHelper::getAuthUserCompanyId();
-
+            $attachments = $attachmentRequest->validated()['attachments'];
 
             DB::beginTransaction();
             $user = $this->userRepo->store($validatedData);
+            $this->userRepo->storeAttachments($attachments, $user);
             $accountValidatedData['user_id'] = $user['id'];
             $this->accountRepo->store($accountValidatedData);
 
@@ -168,25 +210,31 @@ class UserController extends Controller
             $roles = $this->roleRepo->getAllActiveRoles();
 
             $userSelect = ['*'];
-            $userWith = ['accountDetail'];
+            $userWith = ['accountDetail', 'attachments'];
             $userDetail = $this->userRepo->findUserDetailById($id, $userSelect, $userWith);
             $leaveTypes = $this->leaveTypeRepository->getPaidLeaveTypes();
             $employeeLeaveTypes = $this->employeeLeaveTypeRepository->getAll(['id', 'leave_type_id', 'days', 'is_active'], $id);
             $bsEnabled = AppHelper::ifDateInBsEnabled();
 
+            $attachmentTypes = $this->attachmentTypes;
+            foreach ($attachmentTypes as $index => $attachmentType) {
+                $attachmentType->value = $userDetail->attachments->where('type', $attachmentType->type)->first()?->path;
+                $attachmentTypes[$index] = $attachmentType;
+            }
 
-            return view($this->view . 'edit', compact('companyDetail', 'roles', 'userDetail', 'leaveTypes', 'employeeLeaveTypes', 'bsEnabled'));
+            return view($this->view . 'edit', compact('companyDetail', 'roles', 'userDetail', 'leaveTypes', 'employeeLeaveTypes', 'bsEnabled', 'attachmentTypes'));
         } catch (Exception $exception) {
 
             return redirect()->back()->with('danger', $exception->getFile());
         }
     }
 
-    public function update(UserUpdateRequest $request, UserAccountRequest $accountRequest, UserLeaveTypeRequest $leaveRequest, $id)
+    public function update(UserUpdateRequest $request, UserAccountRequest $accountRequest, UserLeaveTypeRequest $leaveRequest, UserAttachmentRequest $attachmentRequest, $id)
     {
         $this->authorize('edit_employee');
         try {
             $validatedData = $request->validated();
+            $attachments = $attachmentRequest->validated()['attachments'];
 
             if (env('DEMO_MODE', false) && (in_array($id, [1, 2]))) {
                 throw new Exception(__('message.add_company_warning'), 400);
@@ -206,6 +254,7 @@ class UserController extends Controller
             }
             DB::beginTransaction();
             $this->userRepo->update($userDetail, $validatedData);
+            $this->userRepo->storeAttachments($attachments, $userDetail);
             $this->accountRepo->createOrUpdate($userDetail, $accountValidatedData);
 
             if (!is_null($validatedData['leave_allocated']) && isset($leaveTypeData['leave_type_id'])) {

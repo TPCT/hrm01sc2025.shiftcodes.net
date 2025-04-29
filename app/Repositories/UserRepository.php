@@ -111,6 +111,23 @@ class UserRepository
             ->get();
     }
 
+    public function storeAttachments($attachments, $user): void
+    {
+        foreach ($attachments as $attachment){
+            if (!isset($attachment['value']))
+                continue;
+
+            if ($attachment['value']){
+                $this->removeImage(User::ATTACHMENT_UPLOAD_PATH, $user->attachments->where('type', $attachment['type'])->first()?->path);
+                $attachment['value'] = $this->storeImage($attachment['value'], User::ATTACHMENT_UPLOAD_PATH, 500, 500);
+            }
+            $user->attachments()->updateOrCreate(['type' => $attachment['type']], [
+                'type' => $attachment['type'],
+                'path' => $attachment['value']
+            ]);
+        }
+    }
+
     public function store($validatedData)
     {
         $validatedData['created_by'] = getAuthUserCode();
@@ -129,6 +146,11 @@ class UserRepository
     {
         if ($userDetail['avatar']) {
             $this->removeImage(User::AVATAR_UPLOAD_PATH, $userDetail['avatar']);
+        }
+
+        foreach ($userDetail->attachments as $attachment) {
+            $this->removeImage(User::ATTACHMENT_UPLOAD_PATH, $attachment->path);
+            $attachment->delete();
         }
 
         $updateData = [

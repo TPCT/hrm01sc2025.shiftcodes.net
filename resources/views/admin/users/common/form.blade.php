@@ -1,5 +1,5 @@
-@php use App\Models\User; @endphp
-@php use App\Models\EmployeeAccount; @endphp
+@php use App\Helpers\AppHelper;use App\Models\User; @endphp
+@php use App\Models\EmployeeAccount;use Illuminate\Support\Str; @endphp
 <div class="mb-2"><small>{!! __('index.all_fields_required') !!}</small></div>
 <style>
     .is-invalid {
@@ -28,11 +28,13 @@
                            name="employee_code"
                            readonly
                            style="pointer-events: none;"
-                           value="{{ ( isset($userDetail) ? $userDetail->employee_code: $employeeCode )}}" autocomplete="off"
+                           value="{{ ( isset($userDetail) ? $userDetail->employee_code: $employeeCode )}}"
+                           autocomplete="off"
                            placeholder="{{ __('index.employee_code') }}" required>
                 </div>
                 <div class="col-lg-4 col-md-6 mb-3">
-                    <label for="name" class="form-label"> {{ __('index.name') }} <span style="color: red">*</span></label>
+                    <label for="name" class="form-label"> {{ __('index.name') }} <span
+                            style="color: red">*</span></label>
                     <input type="text" class="form-control"
                            id="name"
                            name="name"
@@ -51,7 +53,8 @@
                 </div>
 
                 <div class="col-lg-4 col-md-6 mb-3">
-                    <label for="email" class="form-label">{{ __('index.email') }} <span style="color: red">*</span></label>
+                    <label for="email" class="form-label">{{ __('index.email') }} <span
+                            style="color: red">*</span></label>
                     <input type="email" class="form-control" id="email" name="email"
                            value="{{ ( isset($userDetail) ? $userDetail->email: old('email') )}}" required
                            autocomplete="off" placeholder="{{ __('index.enter_email') }}">
@@ -68,7 +71,7 @@
                     <label for="dob" class="form-label"> {{ __('index.dob') }} </label>
                     @if($bsEnabled)
                         <input type="text" class="form-control birthDate" id="dob" name="dob"
-                               value="{{(isset($userDetail->dob) ? \App\Helpers\AppHelper::taskDate($userDetail->dob): old('dob') )}}"
+                               value="{{(isset($userDetail->dob) ? AppHelper::taskDate($userDetail->dob): old('dob') )}}"
                                autocomplete="off"
                                placeholder="{{ __('index.dob') }}">
                     @else
@@ -82,12 +85,14 @@
                 <div class="col-lg-4 col-md-6 mb-3">
                     <label for="gender" class="form-label">{{ __('index.gender') }}</label>
                     <select class="form-select" id="gender" name="gender">
-                        <option value="" {{isset($userDetail) || old('gender') ? '' : 'selected'}}  disabled>{{ __('index.select_gender') }}
+                        <option value=""
+                                {{isset($userDetail) || old('gender') ? '' : 'selected'}}  disabled>{{ __('index.select_gender') }}
                         </option>
                         @foreach(User::GENDER as $value)
                             <option
                                 value="{{$value}}" {{ isset($userDetail) && ($userDetail->gender ) == $value || old('gender') == $value ? 'selected': '' }}>
-                                {{ucfirst($value)}}</option>
+                                {{__('index.' . ucfirst($value))}}
+                            </option>
                         @endforeach
                     </select>
                 </div>
@@ -101,7 +106,7 @@
                         @foreach(User::MARITAL_STATUS as $value)
                             <option value="{{ $value }}"
                                 {{ isset($userDetail) && ($userDetail->marital_status ) == $value || old('marital_status') == $value ? 'selected': '' }}>
-                                {{ucfirst($value)}}
+                                {{__('index.' . ucfirst($value))}}
                             </option>
                         @endforeach
                     </select>
@@ -109,7 +114,8 @@
 
 
                 <div class="col-lg-4 mb-3">
-                    <label for="avatar" class="form-label">{{ __('index.upload_avatar') }} <span style="color: red">*</span> </label>
+                    <label for="avatar" class="form-label">{{ __('index.upload_avatar') }} <span
+                            style="color: red">*</span> </label>
                     <input class="form-control"
                            type="file"
                            id="avatar"
@@ -130,30 +136,35 @@
                         <div class="col-lg-6 mb-3 empl-desc">
                             <label for="remarks" class="form-label">{{ __('index.description') }}</label>
                             <textarea class="form-control" name="remarks" id="tinymceExample"
-                                    rows="2">{{ ( isset($userDetail) ? $userDetail->remarks: old('remarks') )}}</textarea>
+                                      rows="2">{{ ( isset($userDetail) ? $userDetail->remarks: old('remarks') )}}</textarea>
                         </div>
 
                         <div class="col-lg-6">
                             <div class="row">
                                 <div class="col-lg-12 col-md-4 mb-3">
-                                    <label for="username" class="form-label">{{ __('index.username') }} <span style="color: red">*</span></label>
+                                    <label for="username" class="form-label">{{ __('index.username') }} <span
+                                            style="color: red">*</span></label>
                                     <input type="text" class="form-control" id="username" name="username"
-                                        value="{{ ( isset($userDetail) ? $userDetail->username: old('username') )}}"
-                                        required
-                                        autocomplete="off" placeholder="{{ __('index.enter_username') }}">
+                                           value="{{ ( isset($userDetail) ? $userDetail->username: old('username') )}}"
+                                           required
+                                           autocomplete="off" placeholder="{{ __('index.enter_username') }}">
                                 </div>
                                 @if(!isset($userDetail))
                                     <div class="col-lg-12 col-md-4 mb-3">
-                                        <label for="password" class="form-label">{{ __('index.password') }} <span style="color: red">*</span></label>
+                                        <label for="password" class="form-label">{{ __('index.password') }} <span
+                                                style="color: red">*</span></label>
                                         <input type="password" class="form-control" id="password" name="password"
-                                            value="{{old('password')}}" autocomplete="off" placeholder="{{ __('index.enter_password') }}" required>
+                                               value="{{old('password')}}" autocomplete="off"
+                                               placeholder="{{ __('index.enter_password') }}" required>
                                     </div>
                                 @endif
 
                                 <div class="col-lg-12 col-md-4 mb-3">
-                                    <label for="role" class="form-label">{{ __('index.role') }} <span style="color: red">*</span></label>
+                                    <label for="role" class="form-label">{{ __('index.role') }} <span
+                                            style="color: red">*</span></label>
                                     <select class="form-select" id="role" name="role_id" required>
-                                        <option value="" {{isset($userDetail) || old('role_id')  ? '': 'selected'}}  disabled>{{ __('index.select_role') }}
+                                        <option value=""
+                                                {{isset($userDetail) || old('role_id')  ? '': 'selected'}}  disabled>{{ __('index.select_role') }}
                                         </option>
                                         @if($roles)
                                             @foreach($roles as $key =>  $value)
@@ -182,7 +193,8 @@
                 <div class="col-lg-4 col-md-6 mb-3">
                     <label for="branch_id" class="form-label">{{ __('index.branch') }}</label>
                     <select class="form-select" id="branch" name="branch_id">
-                        <option value="" {{!isset($userDetail) || old('branch_id') ? 'selected': ''}}  disabled>{{ __('index.select_branch') }}
+                        <option value=""
+                                {{!isset($userDetail) || old('branch_id') ? 'selected': ''}}  disabled>{{ __('index.select_branch') }}
                         </option>
                         @if(isset($companyDetail))
                             @foreach($companyDetail->branches()->get() as $key => $branch)
@@ -240,7 +252,7 @@
                     <label for="joining_date" class="form-label">{{ __('index.joining_date') }}</label>
                     @if($bsEnabled)
                         <input type="text" class="form-control joiningDate" id="joining_date" name="joining_date"
-                               value="{{(isset($userDetail->joining_date) ? \App\Helpers\AppHelper::taskDate($userDetail->joining_date): old('joining_date') )}}"
+                               value="{{(isset($userDetail->joining_date) ? AppHelper::taskDate($userDetail->joining_date): old('joining_date') )}}"
                                autocomplete="off"
                                placeholder="{{ __('index.enter_joining_date') }}">
                     @else
@@ -275,8 +287,7 @@
 </div>
 
 <div class="row">
-
-<div class="col-lg-6">
+    <div class="col-lg-6">
         <div class="card mb-4">
             <div class="card-body pb-0">
                 <div class="bank-detail">
@@ -304,7 +315,7 @@
                         @for ($k=0;$k<count($leaveTypes);$k++)
                             <tr>
                                 <td>
-                                    {{$leaveTypes[$k]->name}}
+                                    {{__('index.' . Str::slug($leaveTypes[$k]->name, '_'))}}
                                     <input type="hidden" name="leave_type_id[{{$k}}]" value="{{$leaveTypes[$k]->id}}">
                                 </td>
                                 @if (isset($employeeLeaveTypes[$k]))
@@ -313,12 +324,15 @@
 
                                 <td>
                                     <input type="number" min="0" class="form-control leave-days"
-                                           value="{{ $leaveType->days ?? '' }}" oninput="validity.valid||(value='');"  placeholder="{{ __('index.total_leave_days')}}" name="days[{{$k}}]">
+                                           value="{{ $leaveType->days ?? '' }}" oninput="validity.valid||(value='');"
+                                           placeholder="{{ __('index.total_leave_days')}}" name="days[{{$k}}]">
                                     <span class="error-message" style="display: none; color: red;">{{ __('index.required_field')}}.</span>
                                 </td>
 
                                 <td>
-                                    <input class="mt-2 is-active-checkbox" type="checkbox" {{ isset($leaveType->is_active) && $leaveType->is_active == 1 ? 'checked' :''}} name="is_active[{{$k}}]" value="1">{{ __('index.is_active')}}
+                                    <input class="mt-2 is-active-checkbox" type="checkbox"
+                                           {{ isset($leaveType->is_active) && $leaveType->is_active == 1 ? 'checked' :''}} name="is_active[{{$k}}]"
+                                           value="1">{{ __('index.is_active')}}
                                 </td>
                             </tr>
                         @endfor
@@ -358,7 +372,8 @@
                         </div>
 
                         <div class="col-lg-6 col-md-6 mb-4">
-                            <label for="account_holder" class="form-label">{{ __('index.account_holder_name')}} <span style="color: red">*</span></label>
+                            <label for="account_holder" class="form-label">{{ __('index.account_holder_name')}} <span
+                                    style="color: red">*</span></label>
                             <input type="text"
                                    class="form-control"
                                    id="account_holder"
@@ -370,7 +385,8 @@
                         </div>
 
                         <div class="col-lg-6 col-md-6 mb-4">
-                            <label for="bank_account_type" class="form-label">{{ __('index.bank_account_type')}}<span style="color: red">*</span></label>
+                            <label for="bank_account_type" class="form-label">{{ __('index.bank_account_type')}}<span
+                                    style="color: red">*</span></label>
                             <select class="form-select" id="bank_account_type" name="bank_account_type" required>
                                 <option value="" {{isset($userDetail) || old('bank_account_type') ? '': 'selected'}} >
                                     {{ __('index.select_account_type') }}
@@ -378,7 +394,7 @@
                                 @foreach(EmployeeAccount::BANK_ACCOUNT_TYPE as $value)
                                     <option
                                         value="{{ $value }}" {{ isset($userDetail?->accountDetail) && ($userDetail?->accountDetail?->bank_account_type ) == $value || old('bank_account_type') == $value ? 'selected': '' }}>
-                                        {{ucfirst($value)}}</option>
+                                        {{__('index.'. ucfirst($value))}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -390,7 +406,51 @@
     </div>
 </div>
 
+<div class="row">
+    <div class="col-lg-6">
+        <div class="card mb-4">
+            <div class="card-body pb-0">
+                <div class="bank-detail">
+
+                    <h5 class="mb-3 border-bottom pb-3">{{ __('index.attachments') }}</h5>
+                    <table class="table table-responsive">
+                        <thead>
+                        <tr>
+                            <th>{{ __('index.attachment') }}</th>
+                            <th>{{ __('index.value') }}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach ($attachmentTypes as $index => $attachmentType)
+                            <tr>
+                                <td>
+                                    {{__('index.' . Str::slug($attachmentType->name, '_'))}}
+                                    <input type="hidden" name="attachments[{{$index}}][type]" value="{{$attachmentType->type}}">
+                                </td>
+                                <td>
+                                    <input type="file" class="form-control leave-days" name="attachments[{{$index}}][value]">
+                                    <span class="error-message" style="display: none; color: red;">{{ __('index.required_field')}}.</span>
+                                    <img class="mt-2 rounded {{(isset($attachmentType->value)) ? '': 'd-none'}}"
+                                         id="image-preview"
+                                         src="{{ asset(User::ATTACHMENT_UPLOAD_PATH.$attachmentType->value)}}"
+                                         style="object-fit: contain"
+                                         width="100"
+                                         height="100"
+                                    >
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <button type="submit" class="btn btn-primary">
-    <i class="link-icon" data-feather="plus"></i> {{isset($userDetail)? __('index.update_user'):__('index.create_user')}}
+    <i class="link-icon"
+       data-feather="plus"></i> {{isset($userDetail)? __('index.update_user'):__('index.create_user')}}
 </button>

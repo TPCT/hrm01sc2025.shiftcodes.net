@@ -24,6 +24,7 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
     const AVATAR_UPLOAD_PATH = 'uploads/user/avatar/';
+    const ATTACHMENT_UPLOAD_PATH = 'uploads/user/attachment/';
     const RECORDS_PER_PAGE = 20;
     const GENDER = ['male', 'female', 'others'];
     const STATUS = ['pending', 'verified', 'rejected', 'suspended'];
@@ -209,6 +210,10 @@ class User extends Authenticatable
     public function supervisor()
     {
         return $this->belongsTo(User::class, 'supervisor_id', 'id');
+    }
+
+    public function attachments(){
+        return $this->hasMany(UserAttachment::class, 'user_id', 'id');
     }
 
 }
