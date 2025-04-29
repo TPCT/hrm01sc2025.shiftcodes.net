@@ -24,12 +24,12 @@
                 <li class="nav-item">
                     <a href="{{route('admin.attendance.log')}}"
                        data-href="{{route('admin.attendance.log')}}"
-                       class="nav-link {{ request()->routeIs('admin.attendance.log') ? 'active' : ''}}">Attendance Logs</a>
+                       class="nav-link {{ request()->routeIs('admin.attendance.log') ? 'active' : ''}}">@lang('index.attendance_logs')</a>
                 </li>
                 <li class="nav-item">
                     <a href="{{route('admin.attendance.export')}}"
                        data-href="{{route('admin.attendance.export')}}"
-                       class="nav-link {{request()->routeIs('admin.attendance.export') ? 'active' : ''}}">Attendance Report</a>
+                       class="nav-link {{request()->routeIs('admin.attendance.export') ? 'active' : ''}}">@lang('index.attendance_report')</a>
                 </li>
 
             </ul>
