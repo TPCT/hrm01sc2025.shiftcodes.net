@@ -24,4 +24,5 @@ return [
     'forgot_password' => 'نسيت كلمة المرور؟',
     'username_not_found' => 'اسم المستخدم لا يتطابق مع سجلاتنا.',
     'invalid_credentials' => 'هذه البيانات لا تتطابق مع سجلاتنا.',
+
 ];
