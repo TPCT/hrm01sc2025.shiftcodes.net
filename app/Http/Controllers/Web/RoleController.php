@@ -17,6 +17,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Psy\Util\Str;
 
 class  RoleController extends Controller
 {
@@ -197,6 +198,23 @@ class  RoleController extends Controller
                 $role_permission = $role->getRolePermission->pluck('permission_id')->toArray();
                 $isEdit = true;
             }
+
+//            $permissions = [];
+//            foreach($permissionGroupTypeList as $key => $permissionGroupType) {
+//                $permissionModules = $permissionGroupTypeList->where('slug', $permissionGroupType->slug)->first();
+//                foreach($permissionModules->permissionGroups as $key=>$value){
+//                    $permissions[\Illuminate\Support\Str::slug($value->name)] = $value->name;
+//                    foreach($value->getPermission as $keys => $permission){
+//                        $permissions[\Illuminate\Support\Str::slug($permission->name)] = $permission->name;
+//                    }
+//                }
+//            }
+
+//            echo "<pre>";
+//            echo json_encode($permissions);
+//            echo "</pre>";
+//            exit;
+
             return view($this->view . 'permission', compact('permissionGroupTypeList',
                 'role',
                 'role_permission', 'isEdit','allRoles'

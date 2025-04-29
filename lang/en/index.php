@@ -367,6 +367,7 @@ return [
     'create_attendance_title' => 'Create Attendance(:name) Time of :date',
     'total_worked_hours' => 'Total Worked Hours',
     'attendance_report' => 'Attendance Report',
+    'attendance_logs' => 'Attendance Logs',
 
     /** Clients */
     'client_listing' => 'Client Listing',

@@ -355,6 +355,7 @@ return [
     'create_attendance_title' => 'إنشاء وقت الحضور للموظف :name في :date',
     'total_worked_hours' => 'إجمالي ساعات العمل',
     'attendance_report' => 'تقرير الحضور',
+    'attendance_logs' => 'سجلات الحضور',
 
     /** العملاء */
     'client_listing' => 'قائمة العملاء',

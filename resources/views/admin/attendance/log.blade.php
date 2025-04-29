@@ -16,7 +16,7 @@
 
         <div class="card">
             <div class="card-header">
-                <h6 class="card-title mb-0">Attendance Logs</h6>
+                <h6 class="card-title mb-0">{{__("index.attendance_logs")}}</h6>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
