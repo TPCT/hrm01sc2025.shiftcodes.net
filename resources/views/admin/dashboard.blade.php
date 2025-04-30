@@ -262,7 +262,7 @@
                                                 {{ __('index.punch_in') }}
                                             </button>
 
-                                        @elseif(($firstAttendance->check_in_at && !$firstAttendance->check_out_at) || ($lastAttendancess->check_in_at && !$lastAttendance->check_out_at))
+                                        @elseif(($firstAttendance->check_in_at && !$firstAttendance->check_out_at) || ($lastAttendance->check_in_at && !$lastAttendance->check_out_at))
                                             <button href="{{route('admin.dashboard.takeAttendance','checkOut')}}"
                                                     class="btn btn-lg btn-danger"
                                                     id="stopWorkingBtn" data-audio="{{asset('assets/audio/beep.mp3')}}"
