@@ -317,7 +317,6 @@ class AttendanceController extends Controller
             $attendance = ($attendanceType == 'checkIn') ?
                 $this->checkIn($userId, $companyId, true, $locationDetail) :
                 $this->checkOut($userId, $companyId, true, $locationDetail);
-
             $message = ($attendanceType == 'checkIn') ?
                 __('message.checkIn') :
                 __('message.checkOut');
