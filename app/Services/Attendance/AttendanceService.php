@@ -250,8 +250,8 @@ class AttendanceService
 
         $coordinate = $this->getCoordinates($validatedData['user_id']);
 
-        $validatedData['check_in_latitude'] = $coordinate['latitude'] ?? $validatedData['check_in_latitude'];
-        $validatedData['check_in_longitude'] = $coordinate['longitude'] ?? $validatedData['check_in_longitude'];
+        $validatedData['check_in_latitude'] = $validatedData['latitude'] ?? $validatedData['check_in_latitude'] ?? $coordinate['latitude'];
+        $validatedData['check_in_longitude'] = $validatedData['longitude'] ?? $validatedData['check_in_longitude'] ?? $coordinate['longitude'];
 
         $attendance = $this->attendanceRepo->storeAttendanceDetail($validatedData);
         if ($attendance) {
@@ -327,9 +327,8 @@ class AttendanceService
 
         $coordinate = $this->getCoordinates($validatedData['user_id']);
 
-        $validatedData['check_out_latitude'] = $coordinate['latitude'] ?? $validatedData['check_out_latitude'];
-        $validatedData['check_out_longitude'] = $coordinate['longitude'] ?? $validatedData['check_out_longitude'];
-
+        $validatedData['check_out_latitude'] = $validatedData['latitude'] ?? $validatedData['check_out_latitude'] ?? $coordinate['latitude'];
+        $validatedData['check_out_longitude'] = $validatedData['longitude'] ?? $validatedData['check_out_longitude'] ?? $coordinate['longitude'];
 
         $attendanceCheckOut = $this->attendanceRepo->updateAttendanceDetail($attendanceData, $validatedData);
 
