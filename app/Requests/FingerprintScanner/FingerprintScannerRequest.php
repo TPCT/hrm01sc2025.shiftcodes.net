@@ -18,11 +18,6 @@ class FingerprintScannerRequest extends FormRequest
         return true;
     }
 
-    public function prepareForValidation()
-    {
-        $this->user = FingerPrintScanner::find($this->finger_print_scanner)->user;
-    }
-
     /**
      * Get the validation rules that apply to the request.
      *
