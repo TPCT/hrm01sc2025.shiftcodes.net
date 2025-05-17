@@ -221,6 +221,11 @@ return [
     'assign_admin_warning'=>'Admin Role Is Always Assigned With All Permission',
     'permission_update'=>'Permission Updated To Role Successfully',
 
+    'finger_print_scanner_add' => 'New Fingerprint Scanner Detail Added Successfully',
+    'finger_print_scanner_detail_not_found' => 'Fingerprint Scanner Detail Not Found',
+    'finger_print_scanner_delete' => 'Fingerprint Scanner Detail Deleted Successfully',
+    'finger_print_scanner_update' => 'Fingerprint Scanner Detail Updated Successfully',
+
     /** Router */
     'router_add'=>'New Router Detail Added Successfully',
     'router_detail_not_found'=>'Router Detail Not Found',

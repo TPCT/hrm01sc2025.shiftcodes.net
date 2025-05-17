@@ -1,6 +1,10 @@
 <?php
 
- return  [
+return [
+    "list-finger-print-scanner" => "List Fingerprint Scanner",
+    "create-finger-print-scanner" => "Create Fingerprint Scanner",
+    "edit-finger-print-scanner" => "Edit Fingerprint Scanner",
+    "delete-finger-print-scanner" => "Delete Fingerprint Scanner",
     "company" => "Company",
     "view-company" => "View Company",
     "create-company" => "Create Company",

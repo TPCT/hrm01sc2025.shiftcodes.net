@@ -22,8 +22,8 @@
         <div class="{{
                       request()->routeIs('admin.routers.*') ||
                       request()->routeIs('admin.qr.*') ||
-                      request()->routeIs('admin.nfc.*')
-
+                      request()->routeIs('admin.nfc.*') ||
+                      request()->routeIs('admin.finger-print-scanners.*')
                        ? '' : 'collapse'  }} " id="attendance_method">
 
             <ul class="nav sub-menu">
@@ -54,7 +54,15 @@
                             data-href="{{route('admin.qr.index')}}"
                             class="nav-link {{request()->routeIs('admin.qr.*') ? 'active' : ''}}">{{ __('index.qr') }}</a>
                     </li>
+                @endcan
 
+                @can('list_fingerprint_scanners')
+                        <li class="nav-item">
+                            <a
+                                href="{{route('admin.finger-print-scanners.index')}}"
+                                data-href="{{route('admin.finger-print-scanners.index')}}"
+                                class="nav-link {{request()->routeIs('admin.finger-print-scanners.*') ? 'active' : ''}}">{{ __('index.finger_print_scanner') }}</a>
+                        </li>
                 @endcan
             </ul>
         </div>

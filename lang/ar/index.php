@@ -1,6 +1,12 @@
 <?php
 
 return [
+    'finger_print_section' => 'قسم ماسح بصمات الأصابع',
+    'finger_print_scanner' => 'ماسح بصمات الأصابع',
+    'ip_address' => 'عنوان IP',
+    'port' => 'المنفذ',
+    'finger_print_scanner_details' => 'تفاصيل ماسح بصمات الأصابع',
+    'add_finger_print_scanner' => 'إضافة ماسح بصمة الإصبع',
     'welcome' => 'مرحبًا بك في لوحة حضور الموظفين',
     'total_employees' => 'إجمالي الموظفين',
     'total_departments' => 'إجمالي الأقسام',

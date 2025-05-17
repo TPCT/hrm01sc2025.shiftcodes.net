@@ -14,6 +14,12 @@ return [
     */
 
   /** dashboard */
+    'finger_print_section' => 'Fingerprint Scanner Section',
+    'finger_print_scanner' => 'Fingerprint Scanner',
+    'ip_address' => 'IP Address',
+    'port' => 'Port',
+    'finger_print_scanner_details' => 'Fingerprint Scanner details',
+    'add_finger_print_scanner' => 'Add Fingerprint Scanner',
     'welcome' => 'Welcome to Attendance Dashboard',
     'total_employees' => 'Total Employees',
     'total_departments' => 'Total Departments',

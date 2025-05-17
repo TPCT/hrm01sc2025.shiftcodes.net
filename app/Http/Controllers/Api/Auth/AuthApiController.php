@@ -43,7 +43,6 @@ class AuthApiController
                 $data['credential']['login_type'] => $validatedData['username'],
                 'password' => $validatedData['password']
             );
-
             if (!$this->getAttempt($credentials)) {
                 throw new Exception(__('index.invalid_login_credentials'), 401);
             }
@@ -73,6 +72,7 @@ class AuthApiController
                 return AppHelper::sendErrorResponse($e->getMessage(), 422, $e->errors());
             }
             if ($e instanceof GuzzleException) {
+                var_dump("error from guzzle");
                 return AppHelper::sendErrorResponse($e->getMessage(), $e->getCode());
             }
             return AppHelper::sendErrorResponse($e->getMessage(), $e->getCode());

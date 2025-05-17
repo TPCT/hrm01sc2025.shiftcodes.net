@@ -1,6 +1,10 @@
 <?php
 
 return [
+    "list-finger-print-scanner" => "قائمة ماسح بصمات الأصابع",
+    "create-finger-print-scanner" => "إنشاء ماسح بصمات الأصابع",
+    "edit-finger-print-scanner" => "تعديل ماسح بصمات الأصابع",
+    "delete-finger-print-scanner" => "حذف ماسح بصمات الأصابع",
     "company" => "شركة",
     "view-company" => "عرض الشركة",
     "create-company" => "إنشاء شركة",

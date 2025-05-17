@@ -1086,6 +1086,28 @@ class RolePermissionHelper
                 "permission_key" => "delete_router",
                 "permission_groups_id" => 28
             ],
+
+            [
+                "name" => "List Fingerprint Scanner",
+                "permission_key" => "list_fingerprint_scanner",
+                "permission_groups_id" => 28
+            ],
+            [
+                "name" => "Create Fingerprint Scanner",
+                "permission_key" => "create_fingerprint_scanner",
+                "permission_groups_id" => 28
+            ],
+            [
+                "name" => "Edit Fingerprint Scanner",
+                "permission_key" => "edit_fingerprint_scanner",
+                "permission_groups_id" => 28
+            ],
+            [
+                "name" => "Delete Fingerprint Scanner",
+                "permission_key" => "delete_fingerprint_scanner",
+                "permission_groups_id" => 28
+            ],
+
             [
                 "name" => "List NFC",
                 "permission_key" => "list_nfc",

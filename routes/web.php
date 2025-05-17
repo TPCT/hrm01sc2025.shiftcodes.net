@@ -149,6 +149,9 @@ Route::group([
         Route::get('routers/toggle-status/{id}', [RouterController::class, 'toggleStatus'])->name('routers.toggle-status');
         Route::get('routers/delete/{id}', [RouterController::class, 'delete'])->name('routers.delete');
 
+        Route::resource('finger-print-scanners', \App\Http\Controllers\Web\FingerPrintController::class);
+        Route::get('finger-print-scanners/delete/{id}', [RouterController::class, 'delete'])->name('finger-print-scanners.delete');
+
         /** holiday route */
         Route::get('holidays/import-csv', [HolidayController::class, 'holidayImport'])->name('holidays.import-csv.show');
         Route::post('holidays/import-csv', [HolidayController::class, 'importHolidays'])->name('holidays.import-csv.store');
