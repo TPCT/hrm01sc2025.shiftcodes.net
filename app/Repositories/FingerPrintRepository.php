@@ -3,6 +3,10 @@
 namespace App\Repositories;
 
 use App\Models\FingerPrintScanner;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use Illuminate\Testing\Fluent\Concerns\Has;
 
 class FingerPrintRepository
 {
@@ -33,9 +37,25 @@ class FingerPrintRepository
         return FingerPrintScanner::where('ip',$ip)->first();
     }
 
+    private function createFingerPrintUser(FingerPrintScanner $fingerprintScanner){
+        $fingerprintScanner->user()->create([
+            'name' => $fingerprintScanner->fingerprint_username,
+            'email' => Str::random() . '@gmail.com',
+            'username' => $fingerprintScanner->fingerprint_username,
+            'password' => Hash::make($fingerprintScanner->fingerprint_password),
+            'company_id' => $fingerprintScanner->company_id,
+            'branch_id' => $fingerprintScanner->branch_id,
+            'is_active' => 1
+        ]);
+    }
+
     public function store($validatedData)
     {
-        return FingerPrintScanner::create($validatedData)->fresh();
+        $validatedData['fingerprint_username'] = "fingerprint_user_" . Str::random(5);
+        $validatedData['fingerprint_password'] = Str::random();
+        $fingerprintScanner = FingerPrintScanner::create($validatedData)->fresh();
+        $this->createFingerPrintUser($fingerprintScanner);
+        return $fingerprintScanner;
     }
 
     public function findFingerPrintScannerById($id)
@@ -43,13 +63,16 @@ class FingerPrintRepository
         return FingerPrintScanner::where('id',$id)->first();
     }
 
-    public function delete($fingerprintDetail)
+    public function delete(FingerPrintScanner $fingerprintDetail)
     {
+        $fingerprintDetail->user->delete();
         return $fingerprintDetail->delete();
     }
 
-    public function update($fingerprintDetail,$validatedData)
+    public function update(FingerPrintScanner $fingerprintDetail,$validatedData)
     {
-        return $fingerprintDetail->update($validatedData);
+        $fingerprintDetail->update($validatedData);
+        if (!$fingerprintDetail->user)
+            $this->createFingerPrintUser($fingerprintDetail);
     }
 }

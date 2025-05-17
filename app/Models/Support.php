@@ -8,6 +8,37 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * App\Models\Support
+ *
+ * @property int $id
+ * @property string $title
+ * @property string $description
+ * @property int|null $department_id
+ * @property string $status
+ * @property int $is_seen
+ * @property int $created_by
+ * @property int|null $updated_by
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\User $createdBy
+ * @property-read \App\Models\Department|null $departmentQuery
+ * @property-read \App\Models\User|null $updatedBy
+ * @method static Builder|Support newModelQuery()
+ * @method static Builder|Support newQuery()
+ * @method static Builder|Support query()
+ * @method static Builder|Support whereCreatedAt($value)
+ * @method static Builder|Support whereCreatedBy($value)
+ * @method static Builder|Support whereDepartmentId($value)
+ * @method static Builder|Support whereDescription($value)
+ * @method static Builder|Support whereId($value)
+ * @method static Builder|Support whereIsSeen($value)
+ * @method static Builder|Support whereStatus($value)
+ * @method static Builder|Support whereTitle($value)
+ * @method static Builder|Support whereUpdatedAt($value)
+ * @method static Builder|Support whereUpdatedBy($value)
+ * @mixin \Eloquent
+ */
 class Support extends Model
 {
     use HasFactory;

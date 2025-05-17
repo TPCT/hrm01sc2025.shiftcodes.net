@@ -9,6 +9,29 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * App\Models\TrainingType
+ *
+ * @property int $id
+ * @property string $title
+ * @property int $status
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property int|null $branch_id
+ * @property-read \App\Models\Branch|null $branch
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Training> $trainings
+ * @property-read int|null $trainings_count
+ * @method static Builder|TrainingType newModelQuery()
+ * @method static Builder|TrainingType newQuery()
+ * @method static Builder|TrainingType query()
+ * @method static Builder|TrainingType whereBranchId($value)
+ * @method static Builder|TrainingType whereCreatedAt($value)
+ * @method static Builder|TrainingType whereId($value)
+ * @method static Builder|TrainingType whereStatus($value)
+ * @method static Builder|TrainingType whereTitle($value)
+ * @method static Builder|TrainingType whereUpdatedAt($value)
+ * @mixin \Eloquent
+ */
 class TrainingType extends Model
 {
     use HasFactory;

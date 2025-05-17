@@ -11,6 +11,53 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * App\Models\Task
+ *
+ * @property int $id
+ * @property int $project_id
+ * @property string $name
+ * @property string $priority
+ * @property string $status
+ * @property string $start_date
+ * @property string $end_date
+ * @property string $description
+ * @property int $is_active
+ * @property int $created_by
+ * @property int|null $updated_by
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\AssignedMember> $assignedMembers
+ * @property-read int|null $assigned_members_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\TaskChecklist> $completedTaskChecklist
+ * @property-read int|null $completed_task_checklist_count
+ * @property-read \App\Models\User $createdBy
+ * @property-read \App\Models\Project $project
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Attachment> $taskAttachments
+ * @property-read int|null $task_attachments_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\TaskChecklist> $taskChecklists
+ * @property-read int|null $task_checklists_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\TaskComment> $taskComments
+ * @property-read int|null $task_comments_count
+ * @property-read \App\Models\User|null $updatedBy
+ * @method static Builder|Task newModelQuery()
+ * @method static Builder|Task newQuery()
+ * @method static Builder|Task query()
+ * @method static Builder|Task whereCreatedAt($value)
+ * @method static Builder|Task whereCreatedBy($value)
+ * @method static Builder|Task whereDescription($value)
+ * @method static Builder|Task whereEndDate($value)
+ * @method static Builder|Task whereId($value)
+ * @method static Builder|Task whereIsActive($value)
+ * @method static Builder|Task whereName($value)
+ * @method static Builder|Task wherePriority($value)
+ * @method static Builder|Task whereProjectId($value)
+ * @method static Builder|Task whereStartDate($value)
+ * @method static Builder|Task whereStatus($value)
+ * @method static Builder|Task whereUpdatedAt($value)
+ * @method static Builder|Task whereUpdatedBy($value)
+ * @mixin \Eloquent
+ */
 class Task extends Model
 {
     use HasFactory;

@@ -14,6 +14,8 @@ return [
     */
 
   /** dashboard */
+    'fingerprint_username' => 'Fingerprint Account Username',
+    'fingerprint_password' => 'Fingerprint Account Password',
     'finger_print_section' => 'Fingerprint Scanner Section',
     'finger_print_scanner' => 'Fingerprint Scanner',
     'ip_address' => 'IP Address',

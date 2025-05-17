@@ -361,7 +361,7 @@ class AttendanceService
             }
 
             $validatedData['attendance_date'] = Carbon::now()->format('Y-m-d');
-            $validatedData['check_in_at'] = Carbon::now()->toTimeString();
+            $validatedData['check_in_at'] = $validatedData['check_in_at'] ?? Carbon::now()->toTimeString();
 
             DB::beginTransaction();
             $attendance = $this->attendanceRepo->storeAttendanceDetail($validatedData);
@@ -379,11 +379,12 @@ class AttendanceService
     /**
      * @Deprecated Don't use this now
      */
-    public function employeeCheckOut($validatedData)
+    public function employeeCheckOut($validatedData, $authorizeBssid=true)
     {
         try {
 
-            $this->authorizeAttendance($validatedData['router_bssid'], $validatedData['user_id']);
+            if ($authorizeBssid)
+                $this->authorizeAttendance($validatedData['router_bssid'], $validatedData['user_id']);
 
             $select = ['id', 'check_out_at', 'check_in_at', 'user_id'];
             $userTodayCheckInDetail = $this->attendanceRepo->findEmployeeTodayCheckInDetail($validatedData['user_id'], $select);
@@ -394,7 +395,7 @@ class AttendanceService
                 throw new Exception('Employee already checked out for today', 400);
             }
 
-            $checkOut = Carbon::now()->toTimeString();
+            $checkOut = $validatedData['check_out_at'] ?? Carbon::now()->toTimeString();
 
             $workedData = AttendanceHelper::calculateWorkedHour($checkOut, $userTodayCheckInDetail->check_in_at, $userTodayCheckInDetail->user_id);
 

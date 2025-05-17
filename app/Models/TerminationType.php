@@ -9,6 +9,29 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * App\Models\TerminationType
+ *
+ * @property int $id
+ * @property string $title
+ * @property int $status
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property int|null $branch_id
+ * @property-read \App\Models\Branch|null $branch
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Termination> $terminations
+ * @property-read int|null $terminations_count
+ * @method static Builder|TerminationType newModelQuery()
+ * @method static Builder|TerminationType newQuery()
+ * @method static Builder|TerminationType query()
+ * @method static Builder|TerminationType whereBranchId($value)
+ * @method static Builder|TerminationType whereCreatedAt($value)
+ * @method static Builder|TerminationType whereId($value)
+ * @method static Builder|TerminationType whereStatus($value)
+ * @method static Builder|TerminationType whereTitle($value)
+ * @method static Builder|TerminationType whereUpdatedAt($value)
+ * @mixin \Eloquent
+ */
 class TerminationType extends Model
 {
     use HasFactory;

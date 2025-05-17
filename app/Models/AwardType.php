@@ -9,6 +9,29 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * App\Models\AwardType
+ *
+ * @property int $id
+ * @property string $title
+ * @property int $status
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property int|null $branch_id
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Award> $awards
+ * @property-read int|null $awards_count
+ * @property-read \App\Models\Branch|null $branch
+ * @method static Builder|AwardType newModelQuery()
+ * @method static Builder|AwardType newQuery()
+ * @method static Builder|AwardType query()
+ * @method static Builder|AwardType whereBranchId($value)
+ * @method static Builder|AwardType whereCreatedAt($value)
+ * @method static Builder|AwardType whereId($value)
+ * @method static Builder|AwardType whereStatus($value)
+ * @method static Builder|AwardType whereTitle($value)
+ * @method static Builder|AwardType whereUpdatedAt($value)
+ * @mixin \Eloquent
+ */
 class AwardType extends Model
 {
     use HasFactory;

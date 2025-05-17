@@ -8,6 +8,39 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * App\Models\Notice
+ *
+ * @property int $id
+ * @property string $title
+ * @property string $description
+ * @property string $notice_publish_date
+ * @property int $company_id
+ * @property int $is_active
+ * @property int $created_by
+ * @property int|null $updated_by
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read \App\Models\Company $company
+ * @property-read \App\Models\User $createdBy
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\NoticeReceiver> $noticeReceiversDetail
+ * @property-read int|null $notice_receivers_detail_count
+ * @property-read \App\Models\User|null $updatedBy
+ * @method static Builder|Notice newModelQuery()
+ * @method static Builder|Notice newQuery()
+ * @method static Builder|Notice query()
+ * @method static Builder|Notice whereCompanyId($value)
+ * @method static Builder|Notice whereCreatedAt($value)
+ * @method static Builder|Notice whereCreatedBy($value)
+ * @method static Builder|Notice whereDescription($value)
+ * @method static Builder|Notice whereId($value)
+ * @method static Builder|Notice whereIsActive($value)
+ * @method static Builder|Notice whereNoticePublishDate($value)
+ * @method static Builder|Notice whereTitle($value)
+ * @method static Builder|Notice whereUpdatedAt($value)
+ * @method static Builder|Notice whereUpdatedBy($value)
+ * @mixin \Eloquent
+ */
 class Notice extends Model
 {
     use HasFactory;

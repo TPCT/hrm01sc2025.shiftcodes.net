@@ -7,6 +7,58 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+/**
+ * App\Models\TaxReport
+ *
+ * @property int $id
+ * @property int $employee_id
+ * @property int $fiscal_year_id
+ * @property float $total_basic_salary
+ * @property float $total_allowance
+ * @property float $total_ssf_contribution
+ * @property float $total_ssf_deduction
+ * @property float $female_discount
+ * @property float $other_discount
+ * @property float $total_payable_tds
+ * @property float $total_paid_tds
+ * @property float $total_due_tds
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property mixed|null $months
+ * @property float $medical_claim
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\TaxReportAdditionalDetail> $additionalDetail
+ * @property-read int|null $additional_detail_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\TaxReportBonusDetail> $bonusDetail
+ * @property-read int|null $bonus_detail_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\TaxReportComponentDetail> $componentDetail
+ * @property-read int|null $component_detail_count
+ * @property-read \App\Models\User $employee
+ * @property-read \App\Models\FiscalYear $fiscalYear
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\TaxReportDetail> $reportDetail
+ * @property-read int|null $report_detail_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\TaxReportTdsDetail> $tdsDetail
+ * @property-read int|null $tds_detail_count
+ * @method static \Illuminate\Database\Eloquent\Builder|TaxReport newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|TaxReport newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|TaxReport query()
+ * @method static \Illuminate\Database\Eloquent\Builder|TaxReport whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TaxReport whereEmployeeId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TaxReport whereFemaleDiscount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TaxReport whereFiscalYearId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TaxReport whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TaxReport whereMedicalClaim($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TaxReport whereMonths($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TaxReport whereOtherDiscount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TaxReport whereTotalAllowance($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TaxReport whereTotalBasicSalary($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TaxReport whereTotalDueTds($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TaxReport whereTotalPaidTds($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TaxReport whereTotalPayableTds($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TaxReport whereTotalSsfContribution($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TaxReport whereTotalSsfDeduction($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TaxReport whereUpdatedAt($value)
+ * @mixin \Eloquent
+ */
 class TaxReport extends Model
 {
     use HasFactory;

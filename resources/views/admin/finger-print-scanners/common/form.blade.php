@@ -22,6 +22,11 @@
         <input type="text" class="form-control" id="scanner_port" required name="port" value="{{ ( isset($fingerprintScannerDetail) ? ($fingerprintScannerDetail->port): old('port') )}}" autocomplete="off" placeholder="4370">
     </div>
 
+    <div class="col-lg-6 col-md-6 mb-4">
+        <label for="scanner_password" class="form-label">@lang('index.password')  <span style="color: red">*</span></label>
+        <input type="password" class="form-control" id="scanner_password" required name="password" value="{{ ( isset($fingerprintScannerDetail) ? ($fingerprintScannerDetail->password): old('password') )}}" autocomplete="off" placeholder="123456">
+    </div>
+
     <div class="col-lg-12 text-start mb-4">
         <button type="submit" class="btn btn-primary"><i class="link-icon" data-feather="{{isset($fingerprintScannerDetail)? 'edit-2':'plus'}}"></i> {{isset($fingerprintScannerDetail)? __('index.update'):__('index.add')}} @lang('index.finger_print_scanner')</button>
     </div>

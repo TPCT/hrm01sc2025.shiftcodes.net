@@ -32,6 +32,7 @@ use App\Http\Controllers\Api\Auth\AuthApiController;
 
 /**   user login **/
 Route::post('login', [AuthApiController::class,'login']);
+Route::post('attendance/log', [AttendanceApiController::class, 'logAttendance']);
 
 Route::group([
     'middleware' => ['auth:api','permission']

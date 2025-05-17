@@ -8,6 +8,43 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * App\Models\Warning
+ *
+ * @property int $id
+ * @property int $branch_id
+ * @property string $subject
+ * @property string $warning_date
+ * @property string|null $message
+ * @property string $status
+ * @property int $created_by
+ * @property int|null $updated_by
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Branch $branch
+ * @property-read \App\Models\User $createdBy
+ * @property-read \App\Models\User|null $updatedBy
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\WarningDepartment> $warningDepartment
+ * @property-read int|null $warning_department_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\WarningEmployee> $warningEmployee
+ * @property-read int|null $warning_employee_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\WarningResponse> $warningReply
+ * @property-read int|null $warning_reply_count
+ * @method static Builder|Warning newModelQuery()
+ * @method static Builder|Warning newQuery()
+ * @method static Builder|Warning query()
+ * @method static Builder|Warning whereBranchId($value)
+ * @method static Builder|Warning whereCreatedAt($value)
+ * @method static Builder|Warning whereCreatedBy($value)
+ * @method static Builder|Warning whereId($value)
+ * @method static Builder|Warning whereMessage($value)
+ * @method static Builder|Warning whereStatus($value)
+ * @method static Builder|Warning whereSubject($value)
+ * @method static Builder|Warning whereUpdatedAt($value)
+ * @method static Builder|Warning whereUpdatedBy($value)
+ * @method static Builder|Warning whereWarningDate($value)
+ * @mixin \Eloquent
+ */
 class Warning extends Model
 {
     use HasFactory;

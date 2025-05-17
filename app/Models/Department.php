@@ -7,6 +7,49 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * App\Models\Department
+ *
+ * @property int $id
+ * @property string $dept_name
+ * @property string $slug
+ * @property string $address
+ * @property string|null $phone
+ * @property int $is_active
+ * @property int|null $dept_head_id
+ * @property int $company_id
+ * @property int $branch_id
+ * @property int $created_by
+ * @property int|null $updated_by
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Branch $branch
+ * @property-read \App\Models\Company $company
+ * @property-read \App\Models\User $createdBy
+ * @property-read \App\Models\User|null $departmentHead
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\User> $employees
+ * @property-read int|null $employees_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Post> $posts
+ * @property-read int|null $posts_count
+ * @property-read \App\Models\User|null $updatedBy
+ * @method static Builder|Department newModelQuery()
+ * @method static Builder|Department newQuery()
+ * @method static Builder|Department query()
+ * @method static Builder|Department whereAddress($value)
+ * @method static Builder|Department whereBranchId($value)
+ * @method static Builder|Department whereCompanyId($value)
+ * @method static Builder|Department whereCreatedAt($value)
+ * @method static Builder|Department whereCreatedBy($value)
+ * @method static Builder|Department whereDeptHeadId($value)
+ * @method static Builder|Department whereDeptName($value)
+ * @method static Builder|Department whereId($value)
+ * @method static Builder|Department whereIsActive($value)
+ * @method static Builder|Department wherePhone($value)
+ * @method static Builder|Department whereSlug($value)
+ * @method static Builder|Department whereUpdatedAt($value)
+ * @method static Builder|Department whereUpdatedBy($value)
+ * @mixin \Eloquent
+ */
 class Department extends Model
 {
     use HasFactory;

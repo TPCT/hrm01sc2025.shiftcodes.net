@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'fingerprint_username' => 'اسم مستخدم حساب بصمة الإصبع',
+    'fingerprint_password' => 'كلمة مرور حساب بصمة الإصبع',
     'finger_print_section' => 'قسم ماسح بصمات الأصابع',
     'finger_print_scanner' => 'ماسح بصمات الأصابع',
     'ip_address' => 'عنوان IP',

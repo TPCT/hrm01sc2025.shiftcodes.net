@@ -9,6 +9,50 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * App\Models\Branch
+ *
+ * @property int $id
+ * @property string $name
+ * @property string $address
+ * @property string $phone
+ * @property int|null $branch_head_id
+ * @property int $company_id
+ * @property float|null $branch_location_latitude
+ * @property float|null $branch_location_longitude
+ * @property int $is_active
+ * @property int $created_by
+ * @property int|null $updated_by
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\User|null $branchHead
+ * @property-read \App\Models\Company $company
+ * @property-read \App\Models\User $createdBy
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Department> $departments
+ * @property-read int|null $departments_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\User> $employees
+ * @property-read int|null $employees_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Router> $routers
+ * @property-read int|null $routers_count
+ * @property-read \App\Models\User|null $updatedBy
+ * @method static Builder|Branch newModelQuery()
+ * @method static Builder|Branch newQuery()
+ * @method static Builder|Branch query()
+ * @method static Builder|Branch whereAddress($value)
+ * @method static Builder|Branch whereBranchHeadId($value)
+ * @method static Builder|Branch whereBranchLocationLatitude($value)
+ * @method static Builder|Branch whereBranchLocationLongitude($value)
+ * @method static Builder|Branch whereCompanyId($value)
+ * @method static Builder|Branch whereCreatedAt($value)
+ * @method static Builder|Branch whereCreatedBy($value)
+ * @method static Builder|Branch whereId($value)
+ * @method static Builder|Branch whereIsActive($value)
+ * @method static Builder|Branch whereName($value)
+ * @method static Builder|Branch wherePhone($value)
+ * @method static Builder|Branch whereUpdatedAt($value)
+ * @method static Builder|Branch whereUpdatedBy($value)
+ * @mixin \Eloquent
+ */
 class Branch extends Model
 {
     use HasFactory;

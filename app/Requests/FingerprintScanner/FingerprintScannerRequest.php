@@ -2,6 +2,7 @@
 
 namespace App\Requests\FingerprintScanner;
 
+use App\Models\FingerPrintScanner;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -17,6 +18,11 @@ class FingerprintScannerRequest extends FormRequest
         return true;
     }
 
+    public function prepareForValidation()
+    {
+        $this->user = FingerPrintScanner::find($this->finger_print_scanner)->user;
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -28,6 +34,7 @@ class FingerprintScannerRequest extends FormRequest
             'branch_id' => 'required|exists:branches,id',
             'ip' => 'required|string|ipv4',
             'port' => 'required|integer|between:1,65535',
+            'password' => 'required|string'
         ];
 
     }

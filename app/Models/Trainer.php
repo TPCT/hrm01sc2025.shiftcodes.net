@@ -9,6 +9,49 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * App\Models\Trainer
+ *
+ * @property int $id
+ * @property string $trainer_type
+ * @property int|null $branch_id
+ * @property int|null $department_id
+ * @property int|null $employee_id
+ * @property string|null $name
+ * @property string|null $contact_number
+ * @property string|null $email
+ * @property string|null $expertise
+ * @property string|null $address
+ * @property int $created_by
+ * @property int|null $updated_by
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property int $status
+ * @property-read \App\Models\Branch|null $branch
+ * @property-read \App\Models\User $createdBy
+ * @property-read \App\Models\Department|null $department
+ * @property-read \App\Models\User|null $employee
+ * @property-read \App\Models\User|null $updatedBy
+ * @method static Builder|Trainer newModelQuery()
+ * @method static Builder|Trainer newQuery()
+ * @method static Builder|Trainer query()
+ * @method static Builder|Trainer whereAddress($value)
+ * @method static Builder|Trainer whereBranchId($value)
+ * @method static Builder|Trainer whereContactNumber($value)
+ * @method static Builder|Trainer whereCreatedAt($value)
+ * @method static Builder|Trainer whereCreatedBy($value)
+ * @method static Builder|Trainer whereDepartmentId($value)
+ * @method static Builder|Trainer whereEmail($value)
+ * @method static Builder|Trainer whereEmployeeId($value)
+ * @method static Builder|Trainer whereExpertise($value)
+ * @method static Builder|Trainer whereId($value)
+ * @method static Builder|Trainer whereName($value)
+ * @method static Builder|Trainer whereStatus($value)
+ * @method static Builder|Trainer whereTrainerType($value)
+ * @method static Builder|Trainer whereUpdatedAt($value)
+ * @method static Builder|Trainer whereUpdatedBy($value)
+ * @mixin \Eloquent
+ */
 class Trainer extends Model
 {
     use HasFactory;

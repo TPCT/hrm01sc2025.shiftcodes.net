@@ -11,6 +11,61 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * App\Models\Project
+ *
+ * @property int $id
+ * @property string $name
+ * @property int|null $client_id
+ * @property string $start_date
+ * @property string $deadline
+ * @property float $cost
+ * @property string|null $estimated_hours
+ * @property string $status
+ * @property string $priority
+ * @property string $description
+ * @property string $cover_pic
+ * @property int $is_active
+ * @property int $created_by
+ * @property int|null $updated_by
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string $slug
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\AssignedMember> $assignedMembers
+ * @property-read int|null $assigned_members_count
+ * @property-read \App\Models\Client|null $client
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Task> $completedTask
+ * @property-read int|null $completed_task_count
+ * @property-read \App\Models\User $createdBy
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Attachment> $projectAttachments
+ * @property-read int|null $project_attachments_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ProjectTeamLeader> $projectLeaders
+ * @property-read int|null $project_leaders_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Task> $tasks
+ * @property-read int|null $tasks_count
+ * @property-read \App\Models\User|null $updatedBy
+ * @method static Builder|Project newModelQuery()
+ * @method static Builder|Project newQuery()
+ * @method static Builder|Project query()
+ * @method static Builder|Project whereClientId($value)
+ * @method static Builder|Project whereCost($value)
+ * @method static Builder|Project whereCoverPic($value)
+ * @method static Builder|Project whereCreatedAt($value)
+ * @method static Builder|Project whereCreatedBy($value)
+ * @method static Builder|Project whereDeadline($value)
+ * @method static Builder|Project whereDescription($value)
+ * @method static Builder|Project whereEstimatedHours($value)
+ * @method static Builder|Project whereId($value)
+ * @method static Builder|Project whereIsActive($value)
+ * @method static Builder|Project whereName($value)
+ * @method static Builder|Project wherePriority($value)
+ * @method static Builder|Project whereSlug($value)
+ * @method static Builder|Project whereStartDate($value)
+ * @method static Builder|Project whereStatus($value)
+ * @method static Builder|Project whereUpdatedAt($value)
+ * @method static Builder|Project whereUpdatedBy($value)
+ * @mixin \Eloquent
+ */
 class Project extends Model
 {
     use HasFactory;

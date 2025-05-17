@@ -69,11 +69,6 @@ class FingerPrintController extends Controller
         }
     }
 
-    public function show(Router $router)
-    {
-        //
-    }
-
     public function edit($id)
     {
         $this->authorize('edit_fingerprint_scanner');

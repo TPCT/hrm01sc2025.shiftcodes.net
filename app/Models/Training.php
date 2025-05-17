@@ -8,6 +8,56 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * App\Models\Training
+ *
+ * @property int $id
+ * @property int $training_type_id
+ * @property int $branch_id
+ * @property float|null $cost
+ * @property string $start_date
+ * @property string $start_time
+ * @property string|null $end_date
+ * @property string $end_time
+ * @property string|null $certificate
+ * @property string|null $description
+ * @property string $status
+ * @property int $created_by
+ * @property int|null $updated_by
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string|null $venue
+ * @property-read \App\Models\Branch $branch
+ * @property-read \App\Models\User $createdBy
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\EmployeeTraining> $employeeTraining
+ * @property-read int|null $employee_training_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\TrainingDepartment> $trainingDepartment
+ * @property-read int|null $training_department_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\TrainingInstructor> $trainingInstructor
+ * @property-read int|null $training_instructor_count
+ * @property-read \App\Models\TrainingType $trainingType
+ * @property-read \App\Models\User|null $updatedBy
+ * @method static Builder|Training newModelQuery()
+ * @method static Builder|Training newQuery()
+ * @method static Builder|Training query()
+ * @method static Builder|Training whereBranchId($value)
+ * @method static Builder|Training whereCertificate($value)
+ * @method static Builder|Training whereCost($value)
+ * @method static Builder|Training whereCreatedAt($value)
+ * @method static Builder|Training whereCreatedBy($value)
+ * @method static Builder|Training whereDescription($value)
+ * @method static Builder|Training whereEndDate($value)
+ * @method static Builder|Training whereEndTime($value)
+ * @method static Builder|Training whereId($value)
+ * @method static Builder|Training whereStartDate($value)
+ * @method static Builder|Training whereStartTime($value)
+ * @method static Builder|Training whereStatus($value)
+ * @method static Builder|Training whereTrainingTypeId($value)
+ * @method static Builder|Training whereUpdatedAt($value)
+ * @method static Builder|Training whereUpdatedBy($value)
+ * @method static Builder|Training whereVenue($value)
+ * @mixin \Eloquent
+ */
 class Training extends Model
 {
     use HasFactory;

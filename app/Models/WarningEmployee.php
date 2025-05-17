@@ -5,6 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Models\WarningEmployee
+ *
+ * @property int $id
+ * @property int $warning_id
+ * @property int $employee_id
+ * @property-read \App\Models\User $employee
+ * @property-read \App\Models\Warning $warning
+ * @method static \Illuminate\Database\Eloquent\Builder|WarningEmployee newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|WarningEmployee newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|WarningEmployee query()
+ * @method static \Illuminate\Database\Eloquent\Builder|WarningEmployee whereEmployeeId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|WarningEmployee whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|WarningEmployee whereWarningId($value)
+ * @mixin \Eloquent
+ */
 class WarningEmployee extends Model
 {
     use HasFactory;

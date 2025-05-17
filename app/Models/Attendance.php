@@ -10,6 +10,73 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 
+/**
+ * App\Models\Attendance
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property int $company_id
+ * @property string $attendance_date
+ * @property string|null $check_in_at
+ * @property string|null $check_out_at
+ * @property float|null $check_in_latitude
+ * @property float|null $check_out_latitude
+ * @property float|null $check_in_longitude
+ * @property float|null $check_out_longitude
+ * @property string|null $note
+ * @property string|null $edit_remark
+ * @property int $attendance_status
+ * @property int $created_by
+ * @property int|null $updated_by
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property string $check_in_type
+ * @property string $check_out_type
+ * @property float|null $worked_hour in minutes
+ * @property float|null $overtime in minutes
+ * @property float|null $undertime in minutes
+ * @property string|null $check_in_note
+ * @property string|null $check_out_note
+ * @property string|null $night_checkin
+ * @property string|null $night_checkout
+ * @property int|null $office_time_id
+ * @property-read \App\Models\Company $company
+ * @property-read \App\Models\User $createdBy
+ * @property-read \App\Models\User $employee
+ * @property-read \App\Models\OfficeTime|null $officeTime
+ * @property-read \App\Models\User|null $updatedBy
+ * @method static Builder|Attendance newModelQuery()
+ * @method static Builder|Attendance newQuery()
+ * @method static Builder|Attendance query()
+ * @method static Builder|Attendance whereAttendanceDate($value)
+ * @method static Builder|Attendance whereAttendanceStatus($value)
+ * @method static Builder|Attendance whereCheckInAt($value)
+ * @method static Builder|Attendance whereCheckInLatitude($value)
+ * @method static Builder|Attendance whereCheckInLongitude($value)
+ * @method static Builder|Attendance whereCheckInNote($value)
+ * @method static Builder|Attendance whereCheckInType($value)
+ * @method static Builder|Attendance whereCheckOutAt($value)
+ * @method static Builder|Attendance whereCheckOutLatitude($value)
+ * @method static Builder|Attendance whereCheckOutLongitude($value)
+ * @method static Builder|Attendance whereCheckOutNote($value)
+ * @method static Builder|Attendance whereCheckOutType($value)
+ * @method static Builder|Attendance whereCompanyId($value)
+ * @method static Builder|Attendance whereCreatedAt($value)
+ * @method static Builder|Attendance whereCreatedBy($value)
+ * @method static Builder|Attendance whereEditRemark($value)
+ * @method static Builder|Attendance whereId($value)
+ * @method static Builder|Attendance whereNightCheckin($value)
+ * @method static Builder|Attendance whereNightCheckout($value)
+ * @method static Builder|Attendance whereNote($value)
+ * @method static Builder|Attendance whereOfficeTimeId($value)
+ * @method static Builder|Attendance whereOvertime($value)
+ * @method static Builder|Attendance whereUndertime($value)
+ * @method static Builder|Attendance whereUpdatedAt($value)
+ * @method static Builder|Attendance whereUpdatedBy($value)
+ * @method static Builder|Attendance whereUserId($value)
+ * @method static Builder|Attendance whereWorkedHour($value)
+ * @mixin \Eloquent
+ */
 class Attendance extends Model
 {
     use HasFactory;

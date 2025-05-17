@@ -9,6 +9,32 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * App\Models\TaskComment
+ *
+ * @property int $id
+ * @property string $description
+ * @property int $task_id
+ * @property int $created_by
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\User $createdBy
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\MentionedCommentMember> $mentionedMember
+ * @property-read int|null $mentioned_member_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\CommentReply> $replies
+ * @property-read int|null $replies_count
+ * @property-read \App\Models\Task $task
+ * @method static \Illuminate\Database\Eloquent\Builder|TaskComment newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|TaskComment newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|TaskComment query()
+ * @method static \Illuminate\Database\Eloquent\Builder|TaskComment whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TaskComment whereCreatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TaskComment whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TaskComment whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TaskComment whereTaskId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TaskComment whereUpdatedAt($value)
+ * @mixin \Eloquent
+ */
 class TaskComment extends Model
 {
     use HasFactory;

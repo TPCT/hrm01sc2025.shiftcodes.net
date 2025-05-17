@@ -8,6 +8,27 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * App\Models\NfcAttendance
+ *
+ * @property int $id
+ * @property string|null $title
+ * @property string $identifier
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property int $created_by
+ * @property-read \App\Models\User $createdBy
+ * @method static Builder|NfcAttendance newModelQuery()
+ * @method static Builder|NfcAttendance newQuery()
+ * @method static Builder|NfcAttendance query()
+ * @method static Builder|NfcAttendance whereCreatedAt($value)
+ * @method static Builder|NfcAttendance whereCreatedBy($value)
+ * @method static Builder|NfcAttendance whereId($value)
+ * @method static Builder|NfcAttendance whereIdentifier($value)
+ * @method static Builder|NfcAttendance whereTitle($value)
+ * @method static Builder|NfcAttendance whereUpdatedAt($value)
+ * @mixin \Eloquent
+ */
 class NfcAttendance extends Model
 {
     use HasFactory;

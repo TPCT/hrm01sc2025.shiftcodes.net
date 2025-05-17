@@ -212,9 +212,7 @@ class AttendanceApiController extends Controller
             $this->authorize('check_in');
             $permissionKeyForNotification = 'employee_check_in';
             $userDetail = auth()->user();
-
             $validatedData = $request->validated();
-
             $validatedData['user_id'] = $userDetail->id;
             $validatedData['company_id'] = $userDetail->company_id;
 
@@ -237,6 +235,7 @@ class AttendanceApiController extends Controller
             return AppHelper::sendErrorResponse($exception->getMessage(), $exception->getCode());
         }
     }
+
     /**
      * @Deprecated Don't use this now
      */
@@ -271,6 +270,42 @@ class AttendanceApiController extends Controller
         }
     }
 
+    public function logAttendance(Request $request, AttendanceCheckInRequest $checkInRequest, AttendanceCheckOutRequest $checkOutRequest)
+    {
+        if (!(\Auth::attempt([
+            'name' => $request->get('username'),
+            'password' => $request->get('password')
+        ]) && str_starts_with(auth()->user()->username, 'fingerprint_user_'))
+        ) {
+            return response(status: 401);
+        }
+
+        $userDetail = User::whereId($request->get('user_id'));
+        if (!$userDetail->exists())
+            return AppHelper::sendErrorResponse("", 0x11);
+
+        $userDetail = $userDetail->first();
+        if ($request->get('check_in')) {
+            $validatedData = $checkInRequest->validated();
+             $validatedData['user_id'] = $userDetail->id;
+            $validatedData['company_id'] = $userDetail->company_id;
+            $validatedData['check_in_at'] = $request->get('check_in_at');
+            $checkIn = $this->attendanceService->employeeCheckIn($validatedData);
+            $data = new TodayAttendanceResource($checkIn);
+            return AppHelper::sendSuccessResponse(__('index.check_in_successful'), $data);
+        }elseif ($request->get('check_out')){
+            $validatedData = $checkOutRequest->validated();
+            $validatedData['user_id'] = $userDetail->id;
+            $validatedData['company_id'] = $userDetail->company_id;
+            $validatedData['check_out_at'] = $request->get('check_out_at');
+            $checkOut = $this->attendanceService->employeeCheckOut($validatedData, false);
+            $data = new TodayAttendanceResource($checkOut);
+            $workedTime = AttendanceHelper::getEmployeeWorkedTimeInHourAndMinute($checkOut);
+            return AppHelper::sendSuccessResponse(__('index.check_out_successful'), $data);
+        }else{
+            return AppHelper::sendErrorResponse("", 0x1111);
+        }
+    }
 
     /**
      * @throws Exception

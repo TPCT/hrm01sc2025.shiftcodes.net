@@ -5,6 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Models\MeetingParticipatorDetail
+ *
+ * @property int $id
+ * @property int $team_meeting_id
+ * @property int $meeting_participator_id
+ * @property-read \App\Models\TeamMeeting $notice_id
+ * @property-read \App\Models\User $participator
+ * @method static \Illuminate\Database\Eloquent\Builder|MeetingParticipatorDetail newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|MeetingParticipatorDetail newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|MeetingParticipatorDetail query()
+ * @method static \Illuminate\Database\Eloquent\Builder|MeetingParticipatorDetail whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MeetingParticipatorDetail whereMeetingParticipatorId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MeetingParticipatorDetail whereTeamMeetingId($value)
+ * @mixin \Eloquent
+ */
 class MeetingParticipatorDetail extends Model
 {
     use HasFactory;

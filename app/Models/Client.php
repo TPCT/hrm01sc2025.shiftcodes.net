@@ -9,6 +9,45 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * App\Models\Client
+ *
+ * @property int $id
+ * @property string $name
+ * @property string $email
+ * @property string $contact_no
+ * @property string $avatar
+ * @property string|null $address
+ * @property string $country
+ * @property int $is_active
+ * @property int $created_by
+ * @property int|null $updated_by
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property int|null $branch_id
+ * @property-read \App\Models\Branch|null $branch
+ * @property-read \App\Models\User $createdBy
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Project> $projects
+ * @property-read int|null $projects_count
+ * @property-read \App\Models\User|null $updatedBy
+ * @method static Builder|Client newModelQuery()
+ * @method static Builder|Client newQuery()
+ * @method static Builder|Client query()
+ * @method static Builder|Client whereAddress($value)
+ * @method static Builder|Client whereAvatar($value)
+ * @method static Builder|Client whereBranchId($value)
+ * @method static Builder|Client whereContactNo($value)
+ * @method static Builder|Client whereCountry($value)
+ * @method static Builder|Client whereCreatedAt($value)
+ * @method static Builder|Client whereCreatedBy($value)
+ * @method static Builder|Client whereEmail($value)
+ * @method static Builder|Client whereId($value)
+ * @method static Builder|Client whereIsActive($value)
+ * @method static Builder|Client whereName($value)
+ * @method static Builder|Client whereUpdatedAt($value)
+ * @method static Builder|Client whereUpdatedBy($value)
+ * @mixin \Eloquent
+ */
 class Client extends Model
 {
     use HasFactory;

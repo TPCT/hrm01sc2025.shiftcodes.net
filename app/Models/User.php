@@ -19,6 +19,124 @@ use Illuminate\Support\Facades\Auth;
 use Laravel\Passport\HasApiTokens;
 use PhpParser\Builder\Function_;
 
+/**
+ * App\Models\User
+ *
+ * @property int $id
+ * @property string $name
+ * @property string $email
+ * @property string|null $username
+ * @property \Illuminate\Support\Carbon|null $email_verified_at
+ * @property string $password
+ * @property string|null $address
+ * @property string|null $avatar
+ * @property string|null $dob
+ * @property string $gender
+ * @property float|null $phone
+ * @property string $status
+ * @property int $is_active
+ * @property int $online_status
+ * @property int|null $role_id
+ * @property int|null $leave_allocated
+ * @property string $employment_type
+ * @property string $user_type
+ * @property string|null $joining_date
+ * @property int $workspace_type
+ * @property string|null $uuid
+ * @property string|null $fcm_token
+ * @property string|null $device_type
+ * @property int $logout_status
+ * @property string|null $remarks
+ * @property int|null $company_id
+ * @property int|null $branch_id
+ * @property int|null $department_id
+ * @property int|null $post_id
+ * @property int|null $supervisor_id
+ * @property int|null $office_time_id
+ * @property string|null $remember_token
+ * @property int|null $created_by
+ * @property int|null $updated_by
+ * @property int|null $deleted_by
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property string $marital_status
+ * @property string|null $employee_code
+ * @property-read \App\Models\EmployeeAccount|null $accountDetail
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\UserAttachment> $attachments
+ * @property-read int|null $attachments_count
+ * @property-read \App\Models\AttendanceLog|null $attendanceLog
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Award> $awards
+ * @property-read int|null $awards_count
+ * @property-read \App\Models\Branch|null $branch
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Passport\Client> $clients
+ * @property-read int|null $clients_count
+ * @property-read \App\Models\Company|null $company
+ * @property-read User|null $createdBy
+ * @property-read \App\Models\Department|null $department
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Attendance> $employeeAttendance
+ * @property-read int|null $employee_attendance_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Attendance> $employeeTodayAttendance
+ * @property-read int|null $employee_today_attendance_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Attendance> $employeeWeeklyAttendance
+ * @property-read int|null $employee_weekly_attendance_count
+ * @property-read \App\Models\OfficeTime|null $officeTime
+ * @property-read \App\Models\Post|null $post
+ * @property-read \App\Models\Role|null $role
+ * @property-read User|null $supervisor
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Passport\Token> $tokens
+ * @property-read int|null $tokens_count
+ * @property-read User|null $updatedBy
+ * @method static \Database\Factories\UserFactory factory($count = null, $state = [])
+ * @method static Builder|User newModelQuery()
+ * @method static Builder|User newQuery()
+ * @method static Builder|User notAdmin()
+ * @method static Builder|User onlyTrashed()
+ * @method static Builder|User query()
+ * @method static Builder|User whereAddress($value)
+ * @method static Builder|User whereAvatar($value)
+ * @method static Builder|User whereBranchId($value)
+ * @method static Builder|User whereCompanyId($value)
+ * @method static Builder|User whereCreatedAt($value)
+ * @method static Builder|User whereCreatedBy($value)
+ * @method static Builder|User whereDeletedAt($value)
+ * @method static Builder|User whereDeletedBy($value)
+ * @method static Builder|User whereDepartmentId($value)
+ * @method static Builder|User whereDeviceType($value)
+ * @method static Builder|User whereDob($value)
+ * @method static Builder|User whereEmail($value)
+ * @method static Builder|User whereEmailVerifiedAt($value)
+ * @method static Builder|User whereEmployeeCode($value)
+ * @method static Builder|User whereEmploymentType($value)
+ * @method static Builder|User whereFcmToken($value)
+ * @method static Builder|User whereGender($value)
+ * @method static Builder|User whereId($value)
+ * @method static Builder|User whereIsActive($value)
+ * @method static Builder|User whereJoiningDate($value)
+ * @method static Builder|User whereLeaveAllocated($value)
+ * @method static Builder|User whereLogoutStatus($value)
+ * @method static Builder|User whereMaritalStatus($value)
+ * @method static Builder|User whereName($value)
+ * @method static Builder|User whereOfficeTimeId($value)
+ * @method static Builder|User whereOnlineStatus($value)
+ * @method static Builder|User wherePassword($value)
+ * @method static Builder|User wherePhone($value)
+ * @method static Builder|User wherePostId($value)
+ * @method static Builder|User whereRemarks($value)
+ * @method static Builder|User whereRememberToken($value)
+ * @method static Builder|User whereRoleId($value)
+ * @method static Builder|User whereStatus($value)
+ * @method static Builder|User whereSupervisorId($value)
+ * @method static Builder|User whereUpdatedAt($value)
+ * @method static Builder|User whereUpdatedBy($value)
+ * @method static Builder|User whereUserType($value)
+ * @method static Builder|User whereUsername($value)
+ * @method static Builder|User whereUuid($value)
+ * @method static Builder|User whereWorkspaceType($value)
+ * @method static Builder|User withTrashed()
+ * @method static Builder|User withoutTrashed()
+ * @mixin \Eloquent
+ */
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;

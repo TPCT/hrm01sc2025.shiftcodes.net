@@ -85,9 +85,10 @@ class AttendanceController extends Controller
         }
     }
 
-    public function checkInEmployee($companyId, $userId): RedirectResponse
+    public function checkInEmployee(Request $request, $companyId, $userId): RedirectResponse
     {
         $this->authorize('attendance_create');
+
         try {
             $this->checkIn($userId, $companyId);
             return redirect()->back()->with('success', __('message.check_in'));
@@ -97,7 +98,7 @@ class AttendanceController extends Controller
     }
 
 
-    public function checkOutEmployee($companyId, $userId): RedirectResponse
+    public function checkOutEmployee(Request $request, $companyId, $userId): RedirectResponse
     {
         $this->authorize('attendance_update');
         try {
