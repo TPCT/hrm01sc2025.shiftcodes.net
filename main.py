@@ -59,7 +59,6 @@ while True:
                     response = post(host + "attendance/log", json=payload, headers={
                         'accept': 'application/json'
                     })
-                    print(response.text)
                     if response.status_code == 200:
                         print(f"Successfully logged attendance for {attendance.user_id} at {attendance.timestamp}, type: {'Check out' if attendance.punch else 'Check in'}" )
                     else:
